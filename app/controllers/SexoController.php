@@ -89,7 +89,7 @@ public function update() {
             $this->sexo->nombre = $_POST['nombre'];
             $this->sexo->id = $_POST['id'];
             if ($this->sexo->update()) {
-                echo "Sexo actualizado exitosamente";
+                echo "Sexo actualizado";
                 // Redirigir o mostrar un mensaje de éxito
             } else {
                 echo "Error al crear el sexo";
