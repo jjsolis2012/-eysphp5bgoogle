@@ -1,18 +1,21 @@
 
 <!DOCTYPE html>
 <?php
-// MEJORAS EN VISUAL CODE
+// CONFIGURACIÓN DE ERRORES
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 // En SexoController.php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/eysphp/config/database.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/eysphp/app/models/Sexo.php';
-
+//Cambio hecho por Thaiz
 
 
 class SexoController {
-    private $sexo;
-    private $db;
+
+    private $sexo;// Instancia del modelo Sexo
+    private $db; // Conexión a la base de datos
+
+     // Constructor: inicializa conexión y modelo
 
     public function __construct() {
         $this->db = (new Database())->getConnection();
@@ -26,17 +29,19 @@ class SexoController {
     }
 
 
-
+ // CREAR NUEVO REGISTRO
 public function create() {
+    //Verificacion
+    
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo "Formulario recibido";  // Verificar si llega el formulario
+     echo "Datos enviados correctamente al servidor"; // Verificar si llega el formulario
         if (isset($_POST['nombre'])) {
             $this->sexo->nombre = $_POST['nombre'];
             if ($this->sexo->create()) {
-                echo "Sexo creado exitosamente";
+               echo "Registro guardado Correctamente";
                 // Redirigir o mostrar un mensaje de éxito
             } else {
-                echo "Error al crear el sexo";
+                echo "No se pudo guardar el registro";
             }
         } else {
             echo "Faltan datos";
